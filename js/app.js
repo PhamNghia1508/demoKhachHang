@@ -1,5 +1,6 @@
 import { listings, filterListings, sortListings } from "./listings.js";
 import { updateListingStatus, summarizeListings } from "./admin.js";
+import { imageStyle, fallbackImage } from "./image-fallback.js";
 
 const grid = document.querySelector("#listing-grid");
 const empty = document.querySelector("#empty-state");
@@ -14,7 +15,8 @@ const money = (value) => `${value} triệu/tháng`;
 function render() {
   const result = sortListings(filterListings(listings, filters), sortSelect.value);
   grid.innerHTML = result.map((item) => `<article class="listing-card">
-    <div class="card-image" style="background-image:url('${item.image}')">
+    <div class="card-image" style='${imageStyle(item.image, item.type)}'>
+      <img src="${item.image}" alt="${item.title}" onerror="this.onerror=null;this.src='${fallbackImage(item.type)}'">
       ${item.verified ? '<span class="verified">✓ Đã xác minh</span>' : ""}
       <button class="heart" aria-label="Lưu tin">♡</button>
     </div>
@@ -64,12 +66,12 @@ document.addEventListener("click", (event) => {
 function renderAdmin() {
   const summary = summarizeListings(adminListings);
   document.querySelector("#admin-metrics").innerHTML = `<article><small>Tổng tin</small><strong>${summary.total}</strong></article><article><small>Đang hiển thị</small><strong>${summary.active}</strong></article><article><small>Chờ duyệt</small><strong>${summary.pending}</strong></article><article><small>Khách quan tâm</small><strong>${summary.leads}</strong></article>`;
-  document.querySelector("#admin-list").innerHTML = adminListings.map((item) => `<article><img src="${item.image}" alt=""><div><strong>${item.title}</strong><small>${item.district} · ${money(item.price)} · ${item.views} lượt xem</small></div><span class="pill ${item.status === "active" ? "green" : "orange"}">${item.status === "active" ? "Đang hiển thị" : item.status === "pending" ? "Chờ duyệt" : "Đã từ chối"}</span><div class="admin-actions">${item.status === "pending" ? `<button data-admin-action="active" data-id="${item.id}">Duyệt</button><button data-admin-action="rejected" data-id="${item.id}">Từ chối</button>` : "<em>Đã xử lý</em>"}</div></article>`).join("");
+  document.querySelector("#admin-list").innerHTML = adminListings.map((item) => `<article><img src="${item.image}" alt="" onerror="this.onerror=null;this.src='${fallbackImage(item.type)}'"><div><strong>${item.title}</strong><small>${item.district} · ${money(item.price)} · ${item.views} lượt xem</small></div><span class="pill ${item.status === "active" ? "green" : "orange"}">${item.status === "active" ? "Đang hiển thị" : item.status === "pending" ? "Chờ duyệt" : "Đã từ chối"}</span><div class="admin-actions">${item.status === "pending" ? `<button data-admin-action="active" data-id="${item.id}">Duyệt</button><button data-admin-action="rejected" data-id="${item.id}">Từ chối</button>` : "<em>Đã xử lý</em>"}</div></article>`).join("");
 }
 
 function openDetail(id) {
   const item = listings.find((listing) => listing.id === id);
-  document.querySelector("#detail-content").innerHTML = `<div class="detail-image" style="background-image:url('${item.image}')"></div><div class="detail-body">
+  document.querySelector("#detail-content").innerHTML = `<div class="detail-image" style='${imageStyle(item.image, item.type)}'><img src="${item.image}" alt="${item.title}" onerror="this.onerror=null;this.src='${fallbackImage(item.type)}'"></div><div class="detail-body">
     <span class="eyebrow">${item.type} · ${item.district}</span><h2>${item.title}</h2><div class="detail-price">${money(item.price)}</div>
     <div class="detail-meta"><span>${item.area} m²</span><span>${item.bedrooms || "Studio"} phòng ngủ</span><span>${item.bathrooms} phòng tắm</span></div>
     <p>${item.description}</p><div class="amenities">${item.amenities.map((a) => `<span>✓ ${a}</span>`).join("")}</div>
