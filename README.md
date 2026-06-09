@@ -16,4 +16,6 @@ Mo `http://localhost:4173`.
 npm test
 ```
 
-Trang web tu dong deploy len GitHub Pages khi push vao nhanh `main`.
+Trang web tu dong deploy len Vercel khi push vao nhanh `main`.
+
+Production: https://demo-khach-hang.vercel.app
