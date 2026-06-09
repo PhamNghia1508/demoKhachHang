@@ -1,4 +1,5 @@
 import { listings, filterListings, sortListings } from "./listings.js";
+import { updateListingStatus, summarizeListings } from "./admin.js";
 
 const grid = document.querySelector("#listing-grid");
 const empty = document.querySelector("#empty-state");
@@ -6,6 +7,7 @@ const heroSearch = document.querySelector("#hero-search");
 const priceFilter = document.querySelector("#price-filter");
 const sortSelect = document.querySelector("#sort");
 let filters = {};
+let adminListings = listings.slice(0, 5).map((item, index) => ({ ...item, status: index < 3 ? "active" : "pending", views: 350 + index * 410, leads: 4 + index * 3 }));
 
 const money = (value) => `${value} triệu/tháng`;
 
@@ -46,7 +48,24 @@ document.addEventListener("click", (event) => {
   if (opener) document.querySelector(`#${opener.dataset.open}`).showModal();
   if (event.target.matches("[data-close]")) event.target.closest("dialog").close();
   if (event.target.matches(".heart")) { event.target.textContent = event.target.textContent === "♡" ? "♥" : "♡"; showToast("Đã cập nhật danh sách yêu thích"); }
+  const adminAction = event.target.closest("[data-admin-action]");
+  if (adminAction) {
+    adminListings = updateListingStatus(adminListings, Number(adminAction.dataset.id), adminAction.dataset.adminAction);
+    renderAdmin();
+    showToast(adminAction.dataset.adminAction === "active" ? "Tin đăng đã được duyệt và hiển thị." : "Tin đăng đã được từ chối.");
+  }
+  const packageButton = event.target.closest("[data-package]");
+  if (packageButton) {
+    document.querySelector("#contact-modal h2").textContent = `Tư vấn ${packageButton.dataset.package}`;
+    document.querySelector("#contact-modal").showModal();
+  }
 });
+
+function renderAdmin() {
+  const summary = summarizeListings(adminListings);
+  document.querySelector("#admin-metrics").innerHTML = `<article><small>Tổng tin</small><strong>${summary.total}</strong></article><article><small>Đang hiển thị</small><strong>${summary.active}</strong></article><article><small>Chờ duyệt</small><strong>${summary.pending}</strong></article><article><small>Khách quan tâm</small><strong>${summary.leads}</strong></article>`;
+  document.querySelector("#admin-list").innerHTML = adminListings.map((item) => `<article><img src="${item.image}" alt=""><div><strong>${item.title}</strong><small>${item.district} · ${money(item.price)} · ${item.views} lượt xem</small></div><span class="pill ${item.status === "active" ? "green" : "orange"}">${item.status === "active" ? "Đang hiển thị" : item.status === "pending" ? "Chờ duyệt" : "Đã từ chối"}</span><div class="admin-actions">${item.status === "pending" ? `<button data-admin-action="active" data-id="${item.id}">Duyệt</button><button data-admin-action="rejected" data-id="${item.id}">Từ chối</button>` : "<em>Đã xử lý</em>"}</div></article>`).join("");
+}
 
 function openDetail(id) {
   const item = listings.find((listing) => listing.id === id);
@@ -93,3 +112,4 @@ document.querySelector("#post-next").addEventListener("click", () => {
 });
 
 render();
+renderAdmin();
