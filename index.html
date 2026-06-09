@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>An Cư - Tìm đúng nhà, sống đúng ý</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-mark">A</span><span>An Cư<small>Rental platform</small></span></a>
+    <nav><a href="#listings">Tin cho thuê</a><a href="#benefits">Vì sao chọn chúng tôi</a><a href="#roadmap">Giải pháp</a></nav>
+    <div class="header-actions"><button class="ghost-btn" data-open="post-modal">Đăng tin</button><button class="primary-btn" data-open="contact-modal">Tư vấn miễn phí</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">Nền tảng thuê nhà đáng tin cậy</div>
+        <h1>Tìm đúng nhà.<br><span>Sống đúng ý.</span></h1>
+        <p>Khám phá hàng ngàn không gian sống và kinh doanh đã được xác minh, minh bạch thông tin và sẵn sàng kết nối.</p>
+        <form class="search-panel" id="hero-search">
+          <label><span>Từ khóa</span><input name="keyword" placeholder="Tên đường, khu vực..."></label>
+          <label><span>Khu vực</span><select name="district"><option value="">Tất cả khu vực</option><option>Quận 1</option><option>Quận 3</option><option>Quận 7</option><option>Bình Thạnh</option><option>Phú Nhuận</option><option>Gò Vấp</option><option>TP. Thủ Đức</option></select></label>
+          <label><span>Loại hình</span><select name="type"><option value="">Tất cả loại hình</option><option>Căn hộ</option><option>Nhà phố</option><option>Nhà nguyên căn</option><option>Mặt bằng</option><option>Văn phòng</option><option>Biệt thự</option></select></label>
+          <button class="search-btn">Tìm bất động sản</button>
+        </form>
+        <div class="quick-tags"><span>Tìm kiếm phổ biến:</span><button data-keyword="Thảo Điền">Thảo Điền</button><button data-keyword="Căn hộ">Căn hộ</button><button data-keyword="Mặt bằng">Mặt bằng kinh doanh</button></div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-stat"><strong>4.8/5</strong><span>Từ hơn 2.000 khách thuê</span></div>
+        <div class="hero-badge"><span>✓</span><div><strong>100% tin xác minh</strong><small>Minh bạch, an tâm giao dịch</small></div></div>
+      </div>
+    </section>
+
+    <section class="trust-strip"><div><strong>12.500+</strong><span>Tin đang hiển thị</span></div><div><strong>8.200+</strong><span>Khách thuê hài lòng</span></div><div><strong>1.400+</strong><span>Chủ nhà tin tưởng</span></div><div><strong>24h</strong><span>Hỗ trợ nhanh chóng</span></div></section>
+
+    <section class="section" id="listings">
+      <div class="section-heading"><div><span class="eyebrow">Đề xuất dành cho bạn</span><h2>Bất động sản nổi bật</h2><p>Thông tin rõ ràng, hình ảnh thực tế và mức giá minh bạch.</p></div><div class="listing-tools"><select id="price-filter"><option value="">Mọi mức giá</option><option value="10">Dưới 10 triệu</option><option value="20">Dưới 20 triệu</option><option value="30">Dưới 30 triệu</option><option value="50">Dưới 50 triệu</option></select><select id="sort"><option value="featured">Nổi bật nhất</option><option value="price-asc">Giá thấp đến cao</option><option value="price-desc">Giá cao đến thấp</option><option value="area-desc">Diện tích lớn nhất</option></select></div></div>
+      <div class="listing-grid" id="listing-grid"></div>
+      <div class="empty-state" id="empty-state" hidden><strong>Chưa tìm thấy bất động sản phù hợp</strong><span>Hãy thử thay đổi khu vực hoặc mức giá.</span><button id="reset-filter">Xóa bộ lọc</button></div>
+    </section>
+
+    <section class="section benefits" id="benefits">
+      <div class="section-heading centered"><div><span class="eyebrow">Khác biệt tạo niềm tin</span><h2>Một trải nghiệm thuê nhà tốt hơn</h2><p>Giải quyết những nỗi lo thường gặp bằng quy trình rõ ràng và công nghệ phù hợp.</p></div></div>
+      <div class="benefit-grid"><article><span>01</span><h3>Tin thật, giá thật</h3><p>Mọi tin đăng được kiểm duyệt trước khi hiển thị, giảm thời gian tìm kiếm vô ích.</p></article><article><span>02</span><h3>Kết nối trực tiếp</h3><p>Đặt lịch xem nhà và trao đổi với người phụ trách chỉ trong vài thao tác.</p></article><article><span>03</span><h3>Quản lý thông minh</h3><p>Chủ nhà theo dõi lượt xem, khách quan tâm và trạng thái tin đăng dễ dàng.</p></article></div>
+    </section>
+
+    <section class="owner-cta"><div><span class="eyebrow light">Dành cho chủ nhà</span><h2>Cho thuê nhanh hơn,<br>quản lý nhẹ nhàng hơn.</h2><p>Đăng tin chuyên nghiệp, tiếp cận đúng khách hàng và theo dõi hiệu quả trên một nền tảng duy nhất.</p><button class="light-btn" data-open="post-modal">Trải nghiệm đăng tin</button></div><div class="dashboard-card"><div class="dash-top"><b>Tổng quan tin đăng</b><span>30 ngày gần nhất</span></div><div class="dash-stats"><div><small>Lượt xem</small><strong>2.458</strong><em>+18%</em></div><div><small>Khách quan tâm</small><strong>86</strong><em>+12%</em></div></div><div class="bars"><i style="height:38%"></i><i style="height:52%"></i><i style="height:45%"></i><i style="height:72%"></i><i style="height:64%"></i><i style="height:88%"></i><i style="height:100%"></i></div></div></section>
+
+    <section class="section" id="roadmap">
+      <div class="section-heading centered"><div><span class="eyebrow">Lộ trình sản phẩm</span><h2>Từ demo đến nền tảng hoàn chỉnh</h2><p>Phạm vi rõ ràng giúp triển khai nhanh, kiểm soát ngân sách và mở rộng đúng thời điểm.</p></div></div>
+      <div class="roadmap-grid"><article><small>Giai đoạn 01</small><h3>Demo thuyết phục</h3><ul><li>Giao diện thương hiệu</li><li>Tìm kiếm và bộ lọc</li><li>Chi tiết và đặt lịch</li><li>Luồng đăng tin mô phỏng</li></ul><span class="status live">Đang trải nghiệm</span></article><article class="recommended"><b>Khuyến nghị</b><small>Giai đoạn 02</small><h3>MVP vận hành thật</h3><ul><li>Đăng nhập và phân quyền</li><li>Quản lý tin đăng</li><li>Quản trị và kiểm duyệt</li><li>Email, Zalo thông báo</li></ul><span class="status">Sẵn sàng triển khai</span></article><article><small>Giai đoạn 03</small><h3>Mở rộng kinh doanh</h3><ul><li>Gói tin và thanh toán</li><li>Bản đồ và gợi ý AI</li><li>CRM khách hàng</li><li>Báo cáo chuyên sâu</li></ul><span class="status future">Định hướng mở rộng</span></article></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">A</span><span>An Cư<small>Rental platform</small></span></a><p>Demo ý tưởng nền tảng bất động sản cho thuê. Toàn bộ dữ liệu là dữ liệu minh họa.</p><button class="primary-btn" data-open="contact-modal">Nhận tư vấn dự án</button></footer>
+
+  <dialog id="detail-modal" class="modal"><button class="modal-close" data-close>×</button><div id="detail-content"></div></dialog>
+  <dialog id="contact-modal" class="modal form-modal"><button class="modal-close" data-close>×</button><span class="eyebrow">Kết nối nhanh</span><h2>Đặt lịch xem nhà</h2><p>Để lại thông tin, chuyên viên sẽ liên hệ xác nhận trong ít phút.</p><form id="contact-form"><label>Họ và tên<input required placeholder="Nguyễn Văn A"></label><label>Số điện thoại<input required type="tel" placeholder="09xx xxx xxx"></label><label>Thời gian mong muốn<input required type="datetime-local"></label><button class="primary-btn">Xác nhận đặt lịch</button></form></dialog>
+  <dialog id="post-modal" class="modal form-modal"><button class="modal-close" data-close>×</button><span class="eyebrow">Trải nghiệm dành cho chủ nhà</span><h2 id="post-title">Đăng tin trong 3 bước</h2><div class="steps"><i class="active"></i><i></i><i></i></div><form id="post-form"><div class="post-step active"><label>Loại bất động sản<select required><option>Nhà nguyên căn</option><option>Căn hộ</option><option>Mặt bằng</option></select></label><label>Địa chỉ<input required placeholder="Nhập địa chỉ bất động sản"></label></div><div class="post-step"><label>Giá thuê dự kiến<input required type="number" placeholder="Ví dụ: 18000000"></label><label>Diện tích<input required type="number" placeholder="m²"></label></div><div class="post-step"><label>Thông tin liên hệ<input required placeholder="Tên và số điện thoại"></label><label>Mô tả ngắn<textarea placeholder="Điểm nổi bật của bất động sản"></textarea></label></div><button type="button" class="primary-btn" id="post-next">Tiếp tục</button></form></dialog>
+  <div class="toast" id="toast"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
